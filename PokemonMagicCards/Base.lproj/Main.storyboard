@@ -63,7 +63,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Pokemon" id="p1c-8B-6p6"/>
+                    <tabBarItem key="tabBarItem" title="Pokemon" image="pokeball30icon" id="p1c-8B-6p6"/>
                     <connections>
                         <outlet property="pokemonCollectionView" destination="jIe-Vi-0pJ" id="FEG-8K-Xp9"/>
                     </connections>
@@ -143,7 +143,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7RS-fL-VaW"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Magic" id="y90-Kn-iMk"/>
+                    <tabBarItem key="tabBarItem" title="Magic" image="wand30icon" id="y90-Kn-iMk"/>
                     <connections>
                         <outlet property="magicCollectionView" destination="UXS-nr-Uq6" id="Ag1-bJ-rTu"/>
                     </connections>
@@ -363,4 +363,8 @@
             <point key="canvasLocation" x="1289" y="551"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="pokeball30icon" width="30" height="30"/>
+        <image name="wand30icon" width="30" height="30"/>
+    </resources>
 </document>
