@@ -14,12 +14,12 @@ struct PokemonCards: Codable {
 
 struct CardInfo: Codable {
     let attacks: [AttackInfo]
-    let imageUrl: String
-    let imageUrlHiRes: String
+    let imageUrl: String?
+    let imageUrlHiRes: String?
 }
 
 struct AttackInfo: Codable {
     let name: String
-    let text: String?
+    let text: String
     let damage: String
 }

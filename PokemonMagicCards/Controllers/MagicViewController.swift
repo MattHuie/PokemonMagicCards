@@ -12,21 +12,48 @@ class MagicViewController: UIViewController {
     
     @IBOutlet weak var magicCollectionView: UICollectionView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    var magicCards = [MagicCardInfo]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.magicCollectionView.reloadData()
+            }
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        magicCollectionView.dataSource = self
+        magicCollectionView.delegate = self
+        getMagicCards()
+        
     }
-    */
+    
+    private func getMagicCards() {
+        CardsAPIClient.getMagicCards { (error, cards) in
+            if let error = error {
+                print(error.errorMessage())
+            }
+            if let cards = cards {
+                self.magicCards = cards.filter{$0.imageUrl != nil}
+            }
+        }
+    }
+}
+extension MagicViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return magicCards.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MagicCell", for: indexPath) as? MagicCardCell else {return UICollectionViewCell()}
+        return cell
+    }
+    
+    
+}
 
+extension MagicViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize.init(width: 125, height: 175)
+    }
 }

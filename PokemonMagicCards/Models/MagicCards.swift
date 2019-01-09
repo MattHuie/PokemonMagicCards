@@ -13,7 +13,13 @@ struct MagicCards: Codable {
 }
 
 struct MagicCardInfo: Codable {
+    let imageUrl: String?
+    let foreignNames: [ForeignCards]
+}
+
+struct ForeignCards: Codable {
     let name: String
-    let imageUrl: String
     let text: String
+    let imageUrl: String?
+    let language: String
 }
