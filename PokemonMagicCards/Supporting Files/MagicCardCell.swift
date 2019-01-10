@@ -13,6 +13,10 @@ class MagicCardCell: UICollectionViewCell {
     @IBOutlet weak var magicCardImage: UIImageView!
     @IBOutlet weak var magicCollectionActivityIndicator: UIActivityIndicatorView!
     
+    override func prepareForReuse() {
+        magicCardImage.image = nil
+    }
+    
     private var urlString = ""
     public func configureCell(card: MagicCardInfo) {
         
