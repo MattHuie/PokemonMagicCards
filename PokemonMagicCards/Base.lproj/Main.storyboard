@@ -78,6 +78,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="frp-90-Yhh" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sMp-NG-jdR">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -93,7 +94,7 @@
         <!--Magic-->
         <scene sceneID="wj0-nd-Ysj">
             <objects>
-                <viewController id="gz2-8s-FIU" customClass="MagicViewController" customModule="PokemonMagicCards" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="magicVC" id="gz2-8s-FIU" customClass="MagicViewController" customModule="PokemonMagicCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zEd-6R-AUC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -118,9 +119,13 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rlo-EW-Tyg">
                                                     <rect key="frame" x="8" y="28" width="152" height="225"/>
                                                 </imageView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Iow-mw-jFj">
+                                                    <rect key="frame" x="66" y="127" width="37" height="37"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" red="1" green="0.44523800600000002" blue="0.43240054999999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstItem="rlo-EW-Tyg" firstAttribute="top" secondItem="Y2g-K0-KXY" secondAttribute="topMargin" id="0a2-qP-iuV"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="rlo-EW-Tyg" secondAttribute="trailing" id="2mM-Uo-nkO"/>
@@ -129,6 +134,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="magicCardImage" destination="rlo-EW-Tyg" id="mFl-JV-RjW"/>
+                                            <outlet property="magicCollectionActivityIndicator" destination="Iow-mw-jFj" id="tYS-CR-Nt7"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -266,7 +272,7 @@
         <!--Magic Detail View Controller-->
         <scene sceneID="2Nc-Ha-4kI">
             <objects>
-                <viewController id="Irr-cZ-F8p" customClass="MagicDetailViewController" customModule="PokemonMagicCards" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="magicDVC" id="Irr-cZ-F8p" customClass="MagicDetailViewController" customModule="PokemonMagicCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="tL4-MQ-rCH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

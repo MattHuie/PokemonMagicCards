@@ -46,6 +46,8 @@ extension MagicViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MagicCell", for: indexPath) as? MagicCardCell else {return UICollectionViewCell()}
+        let cardInfo = magicCards[indexPath.row]
+        cell.configureCell(card: cardInfo)
         return cell
     }
     
@@ -54,6 +56,15 @@ extension MagicViewController: UICollectionViewDataSource {
 
 extension MagicViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize.init(width: 125, height: 175)
+        return CGSize.init(width: 130, height: 200)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "magicDVC") as? MagicDetailViewController else { return }
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.magicsCards = magicCards[indexPath.row]
+        present(vc, animated: true, completion: nil)
+    }
+    
 }
