@@ -29,6 +29,9 @@ class PokemonViewController: UIViewController {
         
     }
     
+  
+    
+    
     private func getPokeCards() {
         CardsAPIClient.getPokemonCards { (error, cards) in
             if let error = error {
@@ -49,17 +52,33 @@ extension PokemonViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonCell", for: indexPath) as? PokemonCardCell else {return UICollectionViewCell()}
+        let card = pokemonCards[indexPath.row]
         
-        // add code here
-        
+        ImageHelper.shared.fetchImage(urlString: card.imageUrl ?? "") { (error, image) in
+            if let error = error {
+                print("Error: \(error)")
+            } else {
+                if let image = image {
+                    cell.pokemonCardImage.image = image
+                }
+            }
+        }
+       
         return cell
     }
-    
-    
+}
+    extension PokemonViewController: UICollectionViewDelegateFlowLayout {
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            return CGSize.init(width: 125, height: 175)
+        }
+        
+        
+        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+            let pokemonStoryBoard = storyBoard.instantiateViewController(withIdentifier: "pokemon") as! PokemonDetailViewController
+            pokemonStoryBoard.modalPresentationStyle = .overCurrentContext
+            present(pokemonStoryBoard, animated: true, completion: nil)
+            pokemonStoryBoard.pokemonDetails = pokemonCards[indexPath.row]
+        }
 }
 
-extension PokemonViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize.init(width: 125, height: 175)
-    }
-}
